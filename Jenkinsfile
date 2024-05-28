@@ -14,6 +14,7 @@ pipeline{
         stage("Package the Project"){
             steps{
                 sh 'mvn package'
+                sh 'cat Jenkinsfile'
             }
         }
     }
