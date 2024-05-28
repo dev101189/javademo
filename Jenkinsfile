@@ -1,14 +1,15 @@
 pipeline{
     agent any
+    parameters {string defaultValue: 'https://github.com/cloud-dev-user/javademo.git', name: 'projectUrl' }
     stages{
         stage("Getting Project URL"){
            steps {
-               sh 'echo ${projectUrl}'
+               sh 'echo $projectUrl'
            }
         }
         stage("Checkout the code"){
             steps{
-                checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: '${projectUrl}']])
+                checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: '$projectUrl']])
             }
         }
         stage("Package the Project"){
